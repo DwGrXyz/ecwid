@@ -3,7 +3,7 @@ import type { AppCategory } from "@/models/appCategory";
 import type { AppPaginatedList } from "@/models/appPaginatedList";
 import { useAppFetch } from "@/composables/useAppFetch";
 
-const { data } =
+const { data: categories } =
   await useAppFetch<AppPaginatedList<AppCategory>>("/categories");
 </script>
 
@@ -17,9 +17,11 @@ const { data } =
       </thead>
 
       <tbody>
-        <tr v-for="item in data?.items" :key="item.id">
+        <tr v-for="category in categories?.items" :key="category.id">
           <td>
-            {{ item.name }}
+            <NuxtLink :to="`/categories/${category.id}`">
+              {{ category.name }}
+            </NuxtLink>
           </td>
         </tr>
       </tbody>
