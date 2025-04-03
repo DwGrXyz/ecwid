@@ -6,13 +6,20 @@ import { useAppFetch } from "@/composables/useAppFetch";
 
 const route = useRoute();
 
-const { data: category } = useAppFetch<AppCategory>(
+const { data: category } = await useAppFetch<AppCategory>(
   `/categories/${route.params.id}`
 );
-const { data: products } = useAppFetch<AppPaginatedList<AppProduct>>(
+const { data: products } = await useAppFetch<AppPaginatedList<AppProduct>>(
   "/products",
   { params: { category: route.params.id } }
 );
+
+if (!category.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Category not found",
+  });
+}
 </script>
 
 <template>

@@ -4,7 +4,7 @@ import type { AppPaginatedList } from "@/models/appPaginatedList";
 import { useAppFetch } from "@/composables/useAppFetch";
 
 const { data: categories } =
-  useAppFetch<AppPaginatedList<AppCategory>>("/categories");
+  await useAppFetch<AppPaginatedList<AppCategory>>("/categories");
 </script>
 
 <template>

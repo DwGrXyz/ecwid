@@ -4,9 +4,16 @@ import { useAppFetch } from "@/composables/useAppFetch";
 
 const route = useRoute();
 
-const { data: product } = useAppFetch<AppProduct>(
+const { data: product } = await useAppFetch<AppProduct>(
   `/products/${route.params.id}`
 );
+
+if (!product.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Product not found",
+  });
+}
 </script>
 
 <template>
