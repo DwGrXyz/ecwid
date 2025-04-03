@@ -1,16 +1,19 @@
 <template>
   <div>
-    <v-app-bar>
-      <NuxtImg
-        class="ml-4"
-        src="/logo.svg"
-        :placeholder="[130, 30]"
-        densities="x1"
-      />
+    <v-app-bar dense>
+      <div class="ml-4 flex-grow-1">
+        <NuxtLink to="/">
+          <NuxtImg src="/logo.svg" :placeholder="[130, 30]" densities="x1" />
+        </NuxtLink>
+      </div>
+
+      <v-btn to="/cart" icon>
+        <v-icon>mdi-cart</v-icon>
+      </v-btn>
     </v-app-bar>
 
-    <div class="mt-8">
+    <v-main class="ma-4">
       <slot />
-    </div>
+    </v-main>
   </div>
 </template>
