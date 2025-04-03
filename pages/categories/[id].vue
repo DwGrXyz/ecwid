@@ -30,7 +30,11 @@ const { data: products } = useAppFetch<AppPaginatedList<AppProduct>>(
 
       <tbody>
         <tr v-for="product in products?.items" :key="product.id">
-          <td>{{ product.name }}</td>
+          <td>
+            <NuxtLink :to="`/products/${product.id}`">
+              {{ product.name }}
+            </NuxtLink>
+          </td>
           <td>{{ product.defaultDisplayedPriceFormatted }}</td>
           <td>Buy</td>
         </tr>
