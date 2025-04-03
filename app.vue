@@ -1,20 +1,10 @@
 <script setup lang="ts">
 import type { AppCategory } from "@/models/appCategory";
 import type { AppPaginatedList } from "@/models/appPaginatedList";
+import { useAppFetch } from "./composables/useAppFetch";
 
-const config = useRuntimeConfig();
-const { storeId, token } = config.public;
-const options = {
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-  baseURL: `https://app.ecwid.com/api/v3/${storeId}`,
-};
-
-const { data } = await useFetch<AppPaginatedList<AppCategory>>(
-  "/categories",
-  options
-);
+const { data } =
+  await useAppFetch<AppPaginatedList<AppCategory>>("/categories");
 </script>
 
 <template>
