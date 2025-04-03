@@ -24,6 +24,7 @@
     "eslint-plugin-prettier": "^5.2.6",
     "prettier": "^3.5.3",
     "typescript": "^5.8.2",
+    "vuetify-nuxt-module": "0.18.5",
     "vue-tsc": "^2.2.8"
   }
 }

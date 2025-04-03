@@ -9,8 +9,20 @@ const { data } =
 
 <template>
   <div>
-    LEn = {{ data?.total }}
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
+    <v-table>
+      <thead>
+        <tr>
+          <th class="text-left">Name</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr v-for="item in data?.items" :key="item.id">
+          <td>
+            {{ item.name }}
+          </td>
+        </tr>
+      </tbody>
+    </v-table>
   </div>
 </template>
