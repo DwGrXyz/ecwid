@@ -6,10 +6,10 @@ import { useAppFetch } from "@/composables/useAppFetch";
 
 const route = useRoute();
 
-const { data: category } = await useAppFetch<AppCategory>(
+const { data: category } = useAppFetch<AppCategory>(
   `/categories/${route.params.id}`
 );
-const { data: products } = await useAppFetch<AppPaginatedList<AppProduct>>(
+const { data: products } = useAppFetch<AppPaginatedList<AppProduct>>(
   "/products",
   { params: { category: route.params.id } }
 );
