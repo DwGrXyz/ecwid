@@ -13,6 +13,7 @@ defineProps<{
       <thead>
         <tr>
           <th class="text-left">Name</th>
+          <th class="text-left">Image</th>
           <th class="text-left">Price</th>
           <th class="text-left" />
         </tr>
@@ -25,9 +26,15 @@ defineProps<{
               {{ product.name }}
             </NuxtLink>
           </td>
+
+          <td>
+            <NuxtImg :src="product.smallThumbnailUrl" />
+          </td>
+
           <td class="text-no-wrap">
             {{ product.defaultDisplayedPriceFormatted }}
           </td>
+
           <td>
             <AppProductBuyButton :id="product.id" />
           </td>

@@ -26,6 +26,10 @@ if (!product.value) {
     <div>
       <AppDetailsRow label="Name:" :value="product?.name" />
 
+      <AppDetailsRow label="Image:">
+        <NuxtImg :src="product?.imageUrl" />
+      </AppDetailsRow>
+
       <AppDetailsRow label="Description:">
         <div v-html="product?.description" />
       </AppDetailsRow>
