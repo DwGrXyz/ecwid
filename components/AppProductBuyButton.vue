@@ -3,19 +3,7 @@ const props = defineProps<{
   id: number;
 }>();
 
-const tooltipShown = ref(false);
-const tooltipTimeout = ref();
-const hideDelay = 1000;
-const clearTooltipTimeout = () => clearTimeout(tooltipTimeout.value);
-const showTooltip = () => {
-  tooltipShown.value = true;
-  clearTooltipTimeout();
-  tooltipTimeout.value = setTimeout(
-    () => (tooltipShown.value = false),
-    hideDelay
-  );
-};
-onBeforeUnmount(clearTooltipTimeout);
+const { tooltipShown, showTooltip } = useAppFadingTooltip(1000);
 
 const cartStore = useCartStore();
 const addToCart = () => {
