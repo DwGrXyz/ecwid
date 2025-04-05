@@ -3,6 +3,7 @@ import type { AppCategory } from "@/models/appCategory";
 import type { AppPaginatedList } from "@/models/appPaginatedList";
 import type { AppProduct } from "@/models/appProduct";
 import { useAppFetch } from "@/composables/useAppFetch";
+import { useCartStore } from "~/stores/cart";
 
 const route = useRoute();
 
@@ -20,10 +21,14 @@ if (!category.value) {
     statusMessage: "Category not found",
   });
 }
+
+const cartStore = useCartStore();
+const addToCart = (productId: number) => cartStore.addProduct(productId);
 </script>
 
 <template>
   <div>
+    {{ cartStore.list }}
     {{ category?.name }}
 
     <v-table class="mt-4">
@@ -43,7 +48,9 @@ if (!category.value) {
             </NuxtLink>
           </td>
           <td>{{ product.defaultDisplayedPriceFormatted }}</td>
-          <td>Buy</td>
+          <td>
+            <v-btn color="green" @click="addToCart(product.id)">Buy</v-btn>
+          </td>
         </tr>
       </tbody>
     </v-table>

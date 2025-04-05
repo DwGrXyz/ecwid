@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "@nuxt/test-utils",
     "vuetify-nuxt-module",
+    "@pinia/nuxt",
   ],
   runtimeConfig: {
     public: {
