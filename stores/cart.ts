@@ -1,5 +1,5 @@
 type CartState = {
-  list: Record<number, number>;
+  list: Record<string, number>;
 };
 
 export const useCartStore = defineStore("cart", {
@@ -15,6 +15,13 @@ export const useCartStore = defineStore("cart", {
     addProduct(productId: number) {
       const amount = this.list[productId] ?? 0;
       this.list[productId] = amount + 1;
+    },
+    removeProduct(productId: number) {
+      const oldEntries = Object.entries(this.list);
+      const newEntries = oldEntries.filter(
+        ([id]) => id !== productId.toString()
+      );
+      this.list = Object.fromEntries(newEntries);
     },
   },
   persist: true,

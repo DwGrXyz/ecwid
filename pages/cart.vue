@@ -26,15 +26,24 @@ const { data: products } = await useAppFetch<AppPaginatedList<AppProduct>>(
       </thead>
 
       <tbody>
-        <tr v-for="product in products?.items" :key="product.id">
-          <td>
-            <NuxtLink :to="`/products/${product.id}`">
-              {{ product.name }}
-            </NuxtLink>
-          </td>
-          <td>{{ cartStore.list[product.id] }}</td>
-          <td></td>
-        </tr>
+        <template v-for="product in products?.items" :key="product.id">
+          <tr v-if="cartStore.list[product.id]">
+            <td>
+              <NuxtLink :to="`/products/${product.id}`">
+                {{ product.name }}
+              </NuxtLink>
+            </td>
+            <td>{{ cartStore.list[product.id] }}</td>
+            <td>
+              <v-btn
+                color="error"
+                @click.prevent="cartStore.removeProduct(product.id)"
+              >
+                Delete
+              </v-btn>
+            </td>
+          </tr>
+        </template>
       </tbody>
     </v-table>
   </div>
