@@ -31,6 +31,7 @@ if (!product.value) {
 
         <tr>
           <td>Description</td>
+          <!-- eslint-disable-next-line vue/no-v-html -->
           <td v-html="product?.description" />
         </tr>
 
