@@ -5,6 +5,7 @@ import { useAppFetch } from "@/composables/useAppFetch";
 
 import { useCartStore } from "@/stores/cart";
 import AppEmptyTable from "~/components/AppEmptyTable.vue";
+import AppScrollWrapper from "~/components/AppScrollWrapper.vue";
 
 const cartStore = useCartStore();
 const { data: products } = await useAppFetch<AppPaginatedList<AppProduct>>(
@@ -39,35 +40,41 @@ const placeOrder = () => {
     </AppEmptyTable>
 
     <template v-else>
-      <v-table class="mt-4">
-        <thead>
-          <tr>
-            <th class="text-left">Name</th>
-            <th class="text-left">Amount</th>
-            <th />
-          </tr>
-        </thead>
-
-        <tbody>
-          <template v-for="product in products?.items" :key="product.id">
-            <tr v-if="cartStore.list[product.id]">
-              <td>
-                <NuxtLink :to="`/products/${product.id}`">
-                  {{ product.name }}
-                </NuxtLink>
-              </td>
-              <td>{{ cartStore.list[product.id] }}</td>
-              <td>
-                <v-btn
-                  color="error"
-                  text="Delete"
-                  @click.prevent="cartStore.removeProduct(product.id)"
-                />
-              </td>
+      <AppScrollWrapper class="mt-4" min-width="500px">
+        <v-table>
+          <thead>
+            <tr>
+              <th class="text-left">Name</th>
+              <th class="text-left">Price</th>
+              <th class="text-left">Amount</th>
+              <th />
             </tr>
-          </template>
-        </tbody>
-      </v-table>
+          </thead>
+
+          <tbody>
+            <template v-for="product in products?.items" :key="product.id">
+              <tr v-if="cartStore.list[product.id]">
+                <td>
+                  <NuxtLink :to="`/products/${product.id}`">
+                    {{ product.name }}
+                  </NuxtLink>
+                </td>
+                <td class="text-no-wrap">
+                  {{ product.defaultDisplayedPriceFormatted }}
+                </td>
+                <td>{{ cartStore.list[product.id] }}</td>
+                <td>
+                  <v-btn
+                    color="error"
+                    text="Delete"
+                    @click.prevent="cartStore.removeProduct(product.id)"
+                  />
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </v-table>
+      </AppScrollWrapper>
 
       <v-btn
         class="mt-4"

@@ -3,6 +3,7 @@ import type { AppCategory } from "@/models/appCategory";
 import type { AppPaginatedList } from "@/models/appPaginatedList";
 import type { AppProduct } from "@/models/appProduct";
 import { useAppFetch } from "@/composables/useAppFetch";
+import AppScrollWrapper from "~/components/AppScrollWrapper.vue";
 
 const route = useRoute();
 
@@ -34,28 +35,32 @@ if (!category.value) {
       <v-btn to="/categories" text="Catalogue" />
     </AppEmptyTable>
 
-    <v-table v-else class="mt-4">
-      <thead>
-        <tr>
-          <th class="text-left">Name</th>
-          <th class="text-left">Price</th>
-          <th class="text-left" />
-        </tr>
-      </thead>
+    <AppScrollWrapper v-else class="mt-4" min-width="500px">
+      <v-table>
+        <thead>
+          <tr>
+            <th class="text-left">Name</th>
+            <th class="text-left">Price</th>
+            <th class="text-left" />
+          </tr>
+        </thead>
 
-      <tbody>
-        <tr v-for="product in products?.items" :key="product.id">
-          <td>
-            <NuxtLink :to="`/products/${product.id}`">
-              {{ product.name }}
-            </NuxtLink>
-          </td>
-          <td>{{ product.defaultDisplayedPriceFormatted }}</td>
-          <td>
-            <AppProductBuyButton :id="product.id" />
-          </td>
-        </tr>
-      </tbody>
-    </v-table>
+        <tbody>
+          <tr v-for="product in products?.items" :key="product.id">
+            <td>
+              <NuxtLink :to="`/products/${product.id}`">
+                {{ product.name }}
+              </NuxtLink>
+            </td>
+            <td class="text-no-wrap">
+              {{ product.defaultDisplayedPriceFormatted }}
+            </td>
+            <td>
+              <AppProductBuyButton :id="product.id" />
+            </td>
+          </tr>
+        </tbody>
+      </v-table>
+    </AppScrollWrapper>
   </div>
 </template>
