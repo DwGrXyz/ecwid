@@ -4,6 +4,7 @@ import type { AppProduct } from "@/models/appProduct";
 import { useAppFetch } from "@/composables/useAppFetch";
 
 import { useCartStore } from "@/stores/cart";
+import AppEmptyTable from "~/components/AppEmptyTable.vue";
 
 const cartStore = useCartStore();
 const { data: products } = await useAppFetch<AppPaginatedList<AppProduct>>(
@@ -28,6 +29,14 @@ const placeOrder = () => {
       text="Thank's for the purchase!"
       color="success"
     />
+
+    <AppEmptyTable
+      v-else-if="!cartStore.productIds.length"
+      class="mt-4"
+      text="Cart is empty"
+    >
+      <v-btn to="/categories" text="Catalogue" />
+    </AppEmptyTable>
 
     <template v-else>
       <v-table class="mt-4">

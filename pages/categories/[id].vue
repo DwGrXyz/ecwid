@@ -26,7 +26,15 @@ if (!category.value) {
   <div>
     <h3>{{ category?.name }}</h3>
 
-    <v-table class="mt-4">
+    <AppEmptyTable
+      v-if="!products?.items.length"
+      class="mt-4"
+      text="No products found"
+    >
+      <v-btn to="/categories" text="Catalogue" />
+    </AppEmptyTable>
+
+    <v-table v-else class="mt-4">
       <thead>
         <tr>
           <th class="text-left">Name</th>
