@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { useCartStore } from "@/stores/cart";
+
+const cartStore = useCartStore();
+</script>
+
 <template>
   <div>
     <v-app-bar dense>
@@ -8,7 +14,15 @@
       </div>
 
       <v-btn to="/cart" icon>
-        <v-icon>mdi-cart</v-icon>
+        <v-badge
+          v-if="cartStore.count"
+          color="success"
+          :content="cartStore.count"
+        >
+          <v-icon>mdi-cart</v-icon>
+        </v-badge>
+
+        <v-icon v-else>mdi-cart</v-icon>
       </v-btn>
     </v-app-bar>
 

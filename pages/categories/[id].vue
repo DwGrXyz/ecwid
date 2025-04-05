@@ -3,7 +3,7 @@ import type { AppCategory } from "@/models/appCategory";
 import type { AppPaginatedList } from "@/models/appPaginatedList";
 import type { AppProduct } from "@/models/appProduct";
 import { useAppFetch } from "@/composables/useAppFetch";
-import { useCartStore } from "~/stores/cart";
+import { useCartStore } from "@/stores/cart";
 
 const route = useRoute();
 
@@ -28,8 +28,7 @@ const addToCart = (productId: number) => cartStore.addProduct(productId);
 
 <template>
   <div>
-    {{ cartStore.list }}
-    {{ category?.name }}
+    <h3>{{ category?.name }}</h3>
 
     <v-table class="mt-4">
       <thead>
@@ -49,7 +48,7 @@ const addToCart = (productId: number) => cartStore.addProduct(productId);
           </td>
           <td>{{ product.defaultDisplayedPriceFormatted }}</td>
           <td>
-            <v-btn color="green" @click="addToCart(product.id)">Buy</v-btn>
+            <v-btn color="success" @click="addToCart(product.id)">Buy</v-btn>
           </td>
         </tr>
       </tbody>
