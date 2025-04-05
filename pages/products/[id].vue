@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { AppProduct } from "@/models/appProduct";
 import { useAppFetch } from "@/composables/useAppFetch";
+import AppDetailsRow from "~/components/AppDetailsRow.vue";
 
 const route = useRoute();
 
@@ -22,29 +23,19 @@ if (!product.value) {
   <div>
     <h3>{{ product?.name }}</h3>
 
-    <v-table class="mt-4" density="comfortable">
-      <tbody>
-        <tr>
-          <td>Name</td>
-          <td>{{ product?.name }}</td>
-        </tr>
+    <div>
+      <AppDetailsRow label="Name:" :value="product?.name" />
 
-        <tr>
-          <td>Description</td>
-          <!-- eslint-disable-next-line vue/no-v-html -->
-          <td v-html="product?.description" />
-        </tr>
+      <AppDetailsRow label="Description:">
+        <div v-html="product?.description" />
+      </AppDetailsRow>
 
-        <tr>
-          <td>Price</td>
-          <td>
-            <div class="d-flex align-center ga-4">
-              <span v-text="product?.defaultDisplayedPriceFormatted" />
-              <AppProductBuyButton :id="productId" />
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </v-table>
+      <AppDetailsRow
+        label="Price:"
+        :value="product?.defaultDisplayedPriceFormatted"
+      />
+    </div>
+
+    <AppProductBuyButton class="mt-4" :id="productId" />
   </div>
 </template>
