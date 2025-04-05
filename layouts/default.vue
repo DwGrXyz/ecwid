@@ -13,7 +13,7 @@ const cartStore = useCartStore();
         </NuxtLink>
       </div>
 
-      <v-btn to="/cart" icon>
+      <v-btn class="mr-4" to="/cart" icon>
         <v-badge
           v-if="cartStore.count"
           color="success"
