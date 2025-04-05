@@ -36,9 +36,9 @@ if (!category.value) {
     <h3>{{ category?.name }}</h3>
 
     <AppEmptyTable
-      v-if="!products?.items.length"
+      v-if="!products?.items.length && !subCategories?.items.length"
       class="mt-4"
-      text="No products found"
+      text="No products or sub categories found"
     >
       <v-btn to="/categories" text="Catalogue" />
     </AppEmptyTable>
