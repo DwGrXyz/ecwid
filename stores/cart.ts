@@ -11,4 +11,5 @@ export const useCartStore = defineStore("cart", {
       this.list.push(productId);
     },
   },
+  persist: true,
 });

@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "@nuxt/test-utils",
     "vuetify-nuxt-module",
     "@pinia/nuxt",
+    "pinia-plugin-persistedstate/nuxt",
   ],
   runtimeConfig: {
     public: {
