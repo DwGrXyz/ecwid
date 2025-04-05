@@ -1,17 +1,19 @@
 type CartState = {
-  list: number[];
+  list: Record<number, number>;
 };
 
 export const useCartStore = defineStore("cart", {
   state: (): CartState => ({
-    list: [],
+    list: {},
   }),
   getters: {
-    count: (state) => state.list.length,
+    count: (state) =>
+      Object.values(state.list).reduce((sum, amount) => sum + amount, 0),
   },
   actions: {
     addProduct(productId: number) {
-      this.list.push(productId);
+      const amount = this.list[productId] ?? 0;
+      this.list[productId] = amount + 1;
     },
   },
   persist: true,
