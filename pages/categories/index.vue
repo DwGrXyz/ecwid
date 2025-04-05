@@ -9,22 +9,26 @@ const { data: categories } =
 
 <template>
   <div>
-    <v-table>
-      <thead>
-        <tr>
-          <th class="text-left">Name</th>
-        </tr>
-      </thead>
+    <h3>Categories</h3>
 
-      <tbody>
-        <tr v-for="category in categories?.items" :key="category.id">
-          <td>
-            <NuxtLink :to="`/categories/${category.id}`">
-              {{ category.name }}
-            </NuxtLink>
-          </td>
-        </tr>
-      </tbody>
-    </v-table>
+    <div>
+      <v-table>
+        <thead>
+          <tr>
+            <th class="text-left">Name</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr v-for="category in categories?.items" :key="category.id">
+            <td>
+              <NuxtLink :to="`/categories/${category.id}`">
+                {{ category.name }}
+              </NuxtLink>
+            </td>
+          </tr>
+        </tbody>
+      </v-table>
+    </div>
   </div>
 </template>
