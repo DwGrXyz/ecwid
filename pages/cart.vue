@@ -21,7 +21,7 @@ const placeOrder = () => {
 
 <template>
   <div>
-    <h3>Cart</h3>
+    <h3>Shopping cart</h3>
 
     <v-alert
       v-if="success"
