@@ -2,10 +2,9 @@
 import type { AppPaginatedList } from "@/models/appPaginatedList";
 import type { AppProduct } from "@/models/appProduct";
 import { useAppFetch } from "@/composables/useAppFetch";
-
 import { useCartStore } from "@/stores/cart";
-import AppEmptyTable from "~/components/AppEmptyTable.vue";
-import AppScrollWrapper from "~/components/AppScrollWrapper.vue";
+import AppEmptyTable from "@/components/AppEmptyTable.vue";
+import AppScrollWrapper from "@/components/AppScrollWrapper.vue";
 
 const cartStore = useCartStore();
 const { data: products } = await useAppFetch<AppPaginatedList<AppProduct>>(

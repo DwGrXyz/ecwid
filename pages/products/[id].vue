@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { AppProduct } from "@/models/appProduct";
 import { useAppFetch } from "@/composables/useAppFetch";
-import AppDetailsRow from "~/components/AppDetailsRow.vue";
+import AppDetailsRow from "@/components/AppDetailsRow.vue";
 
 const route = useRoute();
 

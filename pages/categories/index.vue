@@ -2,10 +2,13 @@
 import type { AppCategory } from "@/models/appCategory";
 import type { AppPaginatedList } from "@/models/appPaginatedList";
 import { useAppFetch } from "@/composables/useAppFetch";
-import AppEmptyTable from "~/components/AppEmptyTable.vue";
+import AppEmptyTable from "@/components/AppEmptyTable.vue";
+import AppCategoryTable from "@/components/AppCategoryTable.vue";
 
-const { data: categories } =
-  await useAppFetch<AppPaginatedList<AppCategory>>("/categories");
+const { data: categories } = await useAppFetch<AppPaginatedList<AppCategory>>(
+  "/categories",
+  { params: { responseFileds: "total,items(imageUrl)" } }
+);
 </script>
 
 <template>
@@ -20,22 +23,6 @@ const { data: categories } =
       Check this page later
     </AppEmptyTable>
 
-    <v-table v-else class="mt-4">
-      <thead>
-        <tr>
-          <th class="text-left">Name</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr v-for="category in categories?.items" :key="category.id">
-          <td>
-            <NuxtLink :to="`/categories/${category.id}`">
-              {{ category.name }}
-            </NuxtLink>
-          </td>
-        </tr>
-      </tbody>
-    </v-table>
+    <AppCategoryTable v-else class="mt-4" :categories="categories.items" />
   </div>
 </template>
