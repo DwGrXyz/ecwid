@@ -11,6 +11,7 @@ defineProps<{
     <thead>
       <tr>
         <th class="text-left">Name</th>
+        <th class="text-left">Image</th>
       </tr>
     </thead>
 
@@ -20,6 +21,10 @@ defineProps<{
           <NuxtLink :to="`/categories/${category.id}`">
             {{ category.name }}
           </NuxtLink>
+        </td>
+
+        <td>
+          <NuxtImg :src="category.thumbnailUrl" />
         </td>
       </tr>
     </tbody>
