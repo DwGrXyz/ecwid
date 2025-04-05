@@ -16,9 +16,12 @@ const addToCart = () => {
   <div class="position-relative">
     <v-tooltip v-model="tooltipShown" :open-on-hover="false">
       <template #activator="{ props }">
-        <v-btn color="success" v-bind="props" @click.prevent="addToCart">
-          <span>Buy</span>
-        </v-btn>
+        <v-btn
+          text="Buy"
+          color="success"
+          v-bind="props"
+          @click.prevent="addToCart"
+        />
       </template>
 
       <span>Added!</span>

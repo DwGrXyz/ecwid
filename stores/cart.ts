@@ -23,6 +23,9 @@ export const useCartStore = defineStore("cart", {
       );
       this.list = Object.fromEntries(newEntries);
     },
+    clear() {
+      this.list = {};
+    },
   },
   persist: true,
 });
