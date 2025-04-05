@@ -3,7 +3,6 @@ import type { AppCategory } from "@/models/appCategory";
 import type { AppPaginatedList } from "@/models/appPaginatedList";
 import type { AppProduct } from "@/models/appProduct";
 import { useAppFetch } from "@/composables/useAppFetch";
-import { useCartStore } from "@/stores/cart";
 
 const route = useRoute();
 
@@ -21,9 +20,6 @@ if (!category.value) {
     statusMessage: "Category not found",
   });
 }
-
-const cartStore = useCartStore();
-const addToCart = (productId: number) => cartStore.addProduct(productId);
 </script>
 
 <template>
@@ -35,7 +31,7 @@ const addToCart = (productId: number) => cartStore.addProduct(productId);
         <tr>
           <th class="text-left">Name</th>
           <th class="text-left">Price</th>
-          <th class="text-left"></th>
+          <th class="text-left" />
         </tr>
       </thead>
 
@@ -48,7 +44,7 @@ const addToCart = (productId: number) => cartStore.addProduct(productId);
           </td>
           <td>{{ product.defaultDisplayedPriceFormatted }}</td>
           <td>
-            <v-btn color="success" @click="addToCart(product.id)">Buy</v-btn>
+            <AppProductBuyButton :id="product.id" />
           </td>
         </tr>
       </tbody>

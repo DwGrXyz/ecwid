@@ -16,9 +16,6 @@ if (!product.value) {
     statusMessage: "Product not found",
   });
 }
-
-const cartStore = useCartStore();
-const addToCart = (productId: number) => cartStore.addProduct(productId);
 </script>
 
 <template>
@@ -42,7 +39,7 @@ const addToCart = (productId: number) => cartStore.addProduct(productId);
           <td>
             <div class="d-flex align-center ga-4">
               <span v-text="product?.defaultDisplayedPriceFormatted" />
-              <v-btn color="success" @click="addToCart(productId)">Buy</v-btn>
+              <AppProductBuyButton :id="productId" />
             </div>
           </td>
         </tr>
