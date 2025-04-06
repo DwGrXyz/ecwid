@@ -31,6 +31,7 @@ if (!product.value) {
       </AppDetailsRow>
 
       <AppDetailsRow label="Description:">
+        <!-- eslint-disable-next-line vue/no-v-html -->
         <div v-html="product?.description" />
       </AppDetailsRow>
 
@@ -40,6 +41,6 @@ if (!product.value) {
       />
     </div>
 
-    <AppProductBuyButton class="mt-4" :id="productId" />
+    <AppProductBuyButton :id="productId" class="mt-4" />
   </div>
 </template>
