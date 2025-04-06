@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   modules: [
     "@nuxt/image",
     "@nuxt/eslint",
-    "@nuxt/test-utils",
+    "@nuxt/test-utils/module",
     "vuetify-nuxt-module",
     "@pinia/nuxt",
     "pinia-plugin-persistedstate/nuxt",
