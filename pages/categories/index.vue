@@ -1,14 +1,9 @@
 <script setup lang="ts">
-import type { AppCategory } from "@/models/appCategory";
-import type { AppPaginatedList } from "@/models/appPaginatedList";
-import { useAppFetch } from "@/composables/useAppFetch";
 import AppEmptyTable from "@/components/AppEmptyTable.vue";
 import AppCategoryTable from "@/components/AppCategoryTable.vue";
+import { fetchAppCategories } from "@/api/categoryApi";
 
-const { data: categories } = await useAppFetch<AppPaginatedList<AppCategory>>(
-  "/categories",
-  { params: { responseFileds: "total,items(imageUrl)" } }
-);
+const { data: categories } = await fetchAppCategories();
 </script>
 
 <template>

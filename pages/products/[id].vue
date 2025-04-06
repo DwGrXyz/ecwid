@@ -1,15 +1,11 @@
 <script setup lang="ts">
-import type { AppProduct } from "@/models/appProduct";
-import { useAppFetch } from "@/composables/useAppFetch";
 import AppDetailsRow from "@/components/AppDetailsRow.vue";
+import { fetchAppProduct } from "@/api/productApi";
 
 const route = useRoute();
-
 const productId = computed(() => Number(route.params.id));
 
-const { data: product } = await useAppFetch<AppProduct>(
-  `/products/${route.params.id}`
-);
+const { data: product } = await fetchAppProduct(productId.value);
 
 if (!product.value) {
   throw createError({

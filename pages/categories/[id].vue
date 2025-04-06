@@ -1,27 +1,21 @@
 <script setup lang="ts">
-import type { AppCategory } from "@/models/appCategory";
-import type { AppPaginatedList } from "@/models/appPaginatedList";
-import type { AppProduct } from "@/models/appProduct";
-import { useAppFetch } from "@/composables/useAppFetch";
 import AppProductTable from "@/components/AppProductTable.vue";
 import AppCategoryTable from "@/components/AppCategoryTable.vue";
+import { fetchAppCategories, fetchAppCategory } from "@/api/categoryApi";
+import { fetchAppProducts } from "@/api/productApi";
 
 const route = useRoute();
+const categoryId = computed(() => Number(route.params.id));
 
-const { data: category } = await useAppFetch<AppCategory>(
-  `/categories/${route.params.id}`
-);
+const { data: category } = await fetchAppCategory(categoryId.value);
 
-const { data: subCategories } = await useAppFetch<
-  AppPaginatedList<AppCategory>
->("/categories", {
-  params: { parent: route.params.id },
+const { data: subCategories } = await fetchAppCategories({
+  parent: categoryId.value,
 });
 
-const { data: products } = await useAppFetch<AppPaginatedList<AppProduct>>(
-  "/products",
-  { params: { category: route.params.id } }
-);
+const { data: products } = await fetchAppProducts({
+  category: categoryId.value,
+});
 
 if (!category.value) {
   throw createError({
