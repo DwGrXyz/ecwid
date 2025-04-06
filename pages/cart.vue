@@ -23,7 +23,7 @@ const placeOrder = () => {
     <v-alert
       v-if="success"
       class="mt-4"
-      text="Thank's for the purchase!"
+      text="Thanks for the purchase!"
       color="success"
     />
 
