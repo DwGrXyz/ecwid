@@ -61,6 +61,7 @@ const placeOrder = () => {
                 <td>{{ cartStore.list[product.id] }}</td>
                 <td>
                   <v-btn
+                    data-testid="remove-product"
                     color="error"
                     text="Delete"
                     @click.prevent="cartStore.removeProduct(product.id)"
@@ -73,6 +74,7 @@ const placeOrder = () => {
       </AppScrollWrapper>
 
       <v-btn
+        data-testid="place-order"
         class="mt-4"
         text="Place order"
         color="success"

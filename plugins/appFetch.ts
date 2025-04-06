@@ -1,3 +1,5 @@
+import { baseAppApiUrl } from "@/api";
+
 // https://nuxt.com/docs/guide/recipes/custom-usefetch
 export default defineNuxtPlugin(() => {
   const config = useRuntimeConfig();
@@ -7,7 +9,7 @@ export default defineNuxtPlugin(() => {
     headers: {
       Authorization: `Bearer ${token}`,
     },
-    baseURL: `https://app.ecwid.com/api/v3/${storeId}`,
+    baseURL: `${baseAppApiUrl}${storeId}`,
   });
 
   return {

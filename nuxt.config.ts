@@ -18,9 +18,4 @@ export default defineNuxtConfig({
   typescript: {
     typeCheck: true,
   },
-  $test: {
-    app: {
-      baseURL: `https://app.ecwid.com/api/v3/${process.env.NUXT_API_STORE_ID}`,
-    },
-  },
 });
