@@ -27,3 +27,11 @@ Api doesn't provide images for categories for test storage. I used _thumbnailUrl
 - store with full coverage
 - cart page - other page should be covered too, but I didn't want to waste time for that in the test task
 - e2e - most of the time, QA engeneers write e2e tests, so I decided not to write any. I can give you link to the project where I worked with cypress
+
+## What I missed
+
+There are no checks for api errors, it's better to check each case separately
+
+There is no pagination for tables. It's not a problem for the test task but for the prod version we must add it
+
+Also we need a pagination for the cart page, but I think it's better to restrict amount of cart positions. 100 is enough for the most use cases. If we choose that way, we need to show errors when user add a product above the limit.
