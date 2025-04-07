@@ -1,75 +1,20 @@
-# Nuxt Minimal Starter
+# Test task for Lightspeed
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Check task in TASK.md
 
-## Setup
+## Instruments that wasn't in the task
 
-Make sure to install dependencies:
+- nuxt - to make code better organized (also I needed some practice with it)
+- pinia - as the most recent state manager
+- vuetify - I used that UI-kit on some of my previous projects and like it. Also it's very common
+- linter/prettier - I used standard settings to make my code more general
 
-```bash
-# npm
-npm install
+## Archeture
 
-# pnpm
-pnpm install
+I prefer to work with modular domain systems, but in this project I decided to use default nuxt structure
 
-# yarn
-yarn install
+## Tests
 
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- store with full coverage
+- cart page - other page should be covered too, but I didn't want to waste time for that in the test task
+- e2e - most of the time, QA engeneers write e2e tests, so I decided not to write any. I can give you link to the project where I worked with cypress 
