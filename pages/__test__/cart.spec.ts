@@ -21,6 +21,7 @@ describe("Cart page", () => {
   test("with data", async () => {
     const cartStore = useCartStore();
     cartStore.addProduct(1);
+
     const component = await mountSuspended(Cart);
     expect(component.text()).not.toContain("Cart is empty");
     expect(component.find("table")).toBeTruthy();
@@ -30,9 +31,23 @@ describe("Cart page", () => {
   test("delete product", async () => {
     const cartStore = useCartStore();
     cartStore.addProduct(1);
+
     const component = await mountSuspended(Cart);
     const removeButton = component.find('[data-testid="remove-product"]');
     await (removeButton.element as HTMLElement).click();
+
     expect(component.text()).toContain("Cart is empty");
+  });
+
+  test("place order", async () => {
+    const cartStore = useCartStore();
+    cartStore.addProduct(1);
+
+    const component = await mountSuspended(Cart);
+    const submitButton = component.find('[data-testid="place-order"]');
+    await (submitButton.element as HTMLElement).click();
+
+    expect(component.text()).toContain("Thanks for the purchase");
+    expect(cartStore.list).toEqual({});
   });
 });
